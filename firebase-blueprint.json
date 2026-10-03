@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "Dealer": {
+      "title": "Dealer",
+      "description": "A dealer associated with the business.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "address": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Visit": {
+      "title": "Visit",
+      "description": "A visit conducted by a manager to a dealer.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "dealerId": { "type": "string" },
+        "managerId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "dealerId", "managerId", "date"]
+    }
+  },
+  "firestore": {
+    "/dealers/{dealerId}": {
+      "schema": { "$ref": "Dealer" },
+      "description": "Dealer data"
+    },
+    "/visits/{visitId}": {
+      "schema": { "$ref": "Visit" },
+      "description": "Visit data"
+    }
+  }
+}
